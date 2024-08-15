@@ -37,8 +37,11 @@ Meu planejamento é terminar o primeiro ciclo end-to-end de maneira rápida com 
 
 # ❗ Premissas assumidas
 **1. Custos fixos:** Os custos de frete variam de acordo com a distância, mas outras variáveis como peso da carga e tipo de mercadoria foram consideradas constantes.
+
 **2. Normalidade dos Dados:** Assumi que as distribuições de probabilidade do custo do frete e distâncias seguem uma distribuição mais próxima da gaussiana, o que permite a modelagem de regressão sem a necessidade de transformações complexas das features.
+
 **3. Estabilidade dos Fatores Externos:** Não levei em conta política de transporte, tarifas adicionais e regulamentações.
+
 **4. Custo Monetário:** Assumi que as cotações de frete estão em Reais (R$)
 
 # 🛠️ Ferramentas Utilizadas
