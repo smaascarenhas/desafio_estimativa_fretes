@@ -26,6 +26,8 @@ Meu planejamento é terminar o primeiro ciclo end-to-end de maneira rápida com 
 | **id_city_destination** | Representa o código IBGE do município de destino da carga, presente nas bases de cotações e distâncias. |
 | **distance**          | Distância rodoviária entre o município de origem e o município de destino, em quilômetros.   |
 | **freight_cost**      | Custo do frete para o transporte da carga entre os municípios de origem e destino.           |
+| **dt_reference** | Data de referência do custo do frete                                                             |
+
 
 # Premissas assumidas
 1. Custos fixos: Os custos de frete variam de acordo com a distância, mas outras variáveis como peso da carga e tipo de mercadoria foram consideradas constantes.
@@ -37,6 +39,8 @@ Meu planejamento é terminar o primeiro ciclo end-to-end de maneira rápida com 
 ## Modelagem de Dados e treinamento do algoritmo
 - **Scikit-learn:** Biblioteca de machine learning em Python usada para pré processamento de dados e implementação de algoritmos de aprendizado supervisionado e não supervisionado.
 - **XGBoost Regressor:** Implementação avançada do algoritmo Gradient Boosting, otimizada para problemas de regressão, conhecida pela alta precisão e eficiência.
+- **Random Search:** Técnica de otimização de hiperparâmetros que seleciona combinações aleatórias dentro de um espaço de busca definido. Tem mais eficiência computacional que o Grid Search, para grandes intervalos de hiperparâmetros, permitindo encontrar configurações ótimas com menor custo computacional.
+- **Feature Importance:** Método para avaliar a relevância de cada variável no modelo. Utilizando permutation importance, medi o impacto na performance do modelo ao permutar aleatoriamente os valores de cada feature. Features que causam maior queda na performance quando permutadas são consideradas mais importantes, fornecendo insights valiosos sobre os fatores mais influentes nas previsões do modelo.
 
 ## Desenvolvimento e controle de versão
 - **Git:** Sistema de controle de versão amplamente utilizado para gerenciar o código-fonte.
@@ -52,9 +56,17 @@ Meu planejamento é terminar o primeiro ciclo end-to-end de maneira rápida com 
 
 - Execute o script principal
 
-# 🚚 Conclusão 
-Meu modelo cumpre o objetivo de fornecer previsões de cotações de frete para o estado do Mato Grosso para as próximas 52 semanas usando XGBoost.
+# 🚚 Conclusão e Resultado
+Meu modelo cumpre o objetivo de fornecer previsões de cotações de frete para o estado do Mato Grosso para as próximas 52 semanas usando XGBoost. A Métrica utilizada para calcular a performance do modelo foi o RMSE.
+
+**Root Mean Squared Error (RMSE)** Métrica muito utilizada em problemas de regressão, ela mede a diferença entre valores previstor pelo modelo e valores reais. É calculada como a raiz
+quadrada da média dos erros quadráticos. Quanto menor o valor do RMSE, melhor é a performance do modelo, porque mostra que as previsões tem um baixo erro.
+
+![resultado](img/resultado.png)
+
+
 
 # 🔎 Próximos Passos
--
+- Tentar implementar uma transformação de natureza com base na coluna dt_reference para captar comportamento cíclico.
+- Tentar criar novas features que talvez expliquem melhor o fenômeno, a partir dessa transformação de natureza.
 
