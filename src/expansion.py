@@ -4,7 +4,7 @@ import numpy as np
 from xgboost import XGBRegressor
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.inspection import permutation_importance
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
 
 def train_xgboost_model(df):
@@ -41,9 +41,14 @@ def train_xgboost_model(df):
     train_rmse = np.sqrt(mean_squared_error(y_train, train_pred))
     test_rmse = np.sqrt(mean_squared_error(y_test, test_pred))
 
+    train_mape = mean_absolute_percentage_error(y_train, train_pred)
+    test_mape = mean_absolute_percentage_error(y_test, test_pred)
+
     print(f"Melhores parâmetros: {random_search.best_params_}")
     print(f"RMSE train: {train_rmse}")
     print(f"RMSE test: {test_rmse}")
+    print(f"MAPE train: {train_mape:.4f}")
+    print(f"MAPE test: {test_mape:.4f}")
     
     # Calculando a importância das features
     perm_importance = permutation_importance(best_model, X_test, y_test, n_repeats=10, random_state=42)
