@@ -5,6 +5,18 @@ from projection import project_quotes
 import os
 
 def main():
+    """ Essa função é o ponto de entrada do código, fazendo o fluxo de todo o processo
+        de análise e previsão de custos de fretes. Ela realiza as seguintes etapas:
+        1. Carregamento dos dados de frete e distâncias.
+        2. Pré-processamento dos dados, combinando informações de frete e distância.
+        3. Treinamento de um modelo XGBoost para previsão de custos de frete.
+        4. Expansão das cotações para todas as combinações de origem no Mato Grosso
+           e destinos específicos.
+        5. Projeção das cotações para as próximas 52 semanas.
+        6. Salvamento dos resultados em arquivos CSV.
+        Esta função não recebe argumentos e não retorna valores, mas gera dois arquivos
+        de saída: 'historical_quotes.csv' e 'projected_quotes.csv'.
+    """
     # Carregar dados
     freight_df = load_data('../data/freight_costs.csv')
     distances_df = load_data('../data/distances.csv')

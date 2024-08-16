@@ -8,6 +8,17 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
 
 def train_xgboost_model(df):
+    """ Essa função tem o objetivo de treinar um modelo XGBoost para prever custos de frete.
+        Ela realiza as seguintes etapas:
+        1. Prepara os dados, separando features e target.
+        2. Divide os dados em conjuntos de treino e teste.
+        3. Define um intervalo de busca para hiperparâmetros.
+        4. Utiliza o (Random Search) para otimização de hiperparâmetros.
+        5. Treina o modelo com os melhores hiperparâmetros encontrados.
+        6. Avalia o modelo usando RMSE e MAPE para os conjuntos de treino e teste.
+        7. Calcula a importância das features usando permutation importance.
+        8. Retorna o melhor modelo treinado.
+    """
     features = ['id_city_origin', 'id_city_destination', 'distance']
     X = df[features]
     y = df['freight_cost']
@@ -64,6 +75,16 @@ def train_xgboost_model(df):
     return best_model
 
 def expand_quotes(model, distances_df, target_destinations):
+    """ Essa função tem o objetivo de expandir as cotações de frete para todas as combinações
+        de origens no Mato Grosso e destinos específicos.
+        Ela realiza as seguintes etapas:
+        1. Identifica todas as origens únicas no Mato Grosso.
+        2. Para cada combinação de origem e destino alvo:
+           - Recupera a distância correspondente.
+           - Usa o modelo treinado para prever o custo do frete.
+        3. Compila todas as previsões em um DataFrame.
+        4. Retorna o DataFrame com as cotações expandidas.
+    """
     all_mt_origins = distances_df['id_city_origin'].unique()
     
     expanded_quotes = []
