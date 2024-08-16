@@ -104,8 +104,15 @@ Meu modelo cumpre o objetivo de fornecer previsões de cotações de frete para 
 - Oferece uma vantagem competitiva para empresas de logística na precificação de serviços.
 - Auxilia na gestão de riscos financeiros.
 
+### Limitações do modelo
+- **Dependência de dados históricos:** O modelo XGBoost é treinado com dados históricos, provavelmente não irá captar mudanças bruscas e imprevistos nas cotações de frete.
+- **Ausência de variáveis externas:** A modelagem deste projeto considera apenas origem, destino e distância. Fatores externos como preço do combustível, condições das estradas, sazonalidade e eventos econômicos não estão sendo considerados nesta solução.
+- **Atualização do modelo:** O processo atual não inclui uma etapa de avaliação do desempenho do modelo ao longo do tempo.
+
 
 ### Como próximos passos listei abaixo o que pretendo fazer:
 
-- Tentar implementar uma transformação de natureza com base na coluna dt_reference para captar comportamento cíclico.
-- Tentar criar novas features que talvez expliquem melhor o fenômeno, a partir dessa transformação de natureza.
+- **Automatizar a coleta de dados semanalmente:** Implementando um script que colete automaticamente novos dados de custos de frete e atualize a base de dados. Para isso, também será necessário ajustar as funções para incluir o retreinamento do modelo com os dados mais recentes e gerar previsões para as 52 semanas seguintes a partir da nova base de dados.
+- **Transformação dos dados:** Tentar implementar uma transformação de natureza com base na coluna dt_reference para captar comportamento cíclico.
+- **Feature Engineering:** Tentar criar novas features que talvez expliquem melhor o fenômeno, a partir dessa transformação de natureza.
+- **Coleta de dados:** Entrar em contato com o stakeholder solicitando mais dados para resolver o problema da ausência de variáveis externas.
